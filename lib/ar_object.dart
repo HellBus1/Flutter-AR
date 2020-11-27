@@ -9,10 +9,28 @@ class ARObject extends StatefulWidget {
 class _ARObjectState extends State<ARObject> {
   ArCoreController arCoreController;
 
+  String objectSelected;
+
+  @override
+  Widget build(BuildContext context) {
+    return ArCoreView(
+      onArCoreViewCreated: _onArCoreViewCreated,
+      enableTapRecognizer: true,
+    );
+  }
+
+  void _onArCoreViewCreated(ArCoreController controller) {
+    arCoreController = controller;
+    arCoreController.onNodeTap = (name) => onTapHandler(name);
+    arCoreController.onPlaneTap = _handleOnPlaneTap;
+  }
+
   void _addToucano(ArCoreHitTestResult plane) {
     final toucanNode = ArCoreReferenceNode(
         name: "Toucano",
-        objectUrl: "sampledata/indoor_pot_plant_3/scene.gltf",
+        objectUrl:
+            // "https://github.com/HellBus1/Flutter-AR/blob/main/sampledata/indoor_pot_plant_3/scene.gltf",
+            "https://github.com/KhronosGroup/glTF-Sample-Models/raw/master/2.0/Duck/glTF/Duck.gltf",
         position: plane.pose.translation,
         rotation: plane.pose.rotation);
 
@@ -50,17 +68,5 @@ class _ARObjectState extends State<ARObject> {
   void dispose() {
     arCoreController.dispose();
     super.dispose();
-  }
-
-  @override
-  Widget build(BuildContext context) {
-    return ArCoreView(
-        onArCoreViewCreated: _onArCoreViewCreated, enableTapRecognizer: true);
-  }
-
-  void _onArCoreViewCreated(ArCoreController controller) {
-    arCoreController = controller;
-    arCoreController.onNodeTap = (name) => onTapHandler(name);
-    arCoreController.onPlaneTap = _handleOnPlaneTap;
   }
 }

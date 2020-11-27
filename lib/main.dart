@@ -36,7 +36,6 @@ class MyHomePage extends StatefulWidget {
 
 class _MyHomePageState extends State<MyHomePage> {
   final GlobalKey qrKey = GlobalKey();
-  ArView arView = ArView();
   bool isARActivated = false;
   String barcode = "";
 
@@ -54,28 +53,23 @@ class _MyHomePageState extends State<MyHomePage> {
         },
       );
     }
-    return Text('Success $barcode');
-    // return ARObject();
-  }
-
-  @override
-  void dispose() {
-    arView.arCoreController.dispose();
-    super.dispose();
+    return ARObject();
   }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        backgroundColor: Color(0xfff3f3f3),
-        appBar: AppBar(
-          title: Text(widget.title),
-          backgroundColor: Color.fromRGBO(0, 181, 117, 1),
-        ),
-        body: SizedBox.expand(
-            child: Stack(children: <Widget>[
-          changeARWidget(isARActivated),
-          modalBottom(barcode)
-        ])));
+      backgroundColor: Color(0xfff3f3f3),
+      appBar: AppBar(
+        title: Text(widget.title),
+        backgroundColor: Color.fromRGBO(0, 181, 117, 1),
+      ),
+      body: ARObject(),
+      // SizedBox.expand(
+      //     child: Stack(children: <Widget>[
+      //   changeARWidget(isARActivated),
+      //   modalBottom(barcode)
+      // ]))
+    );
   }
 }
