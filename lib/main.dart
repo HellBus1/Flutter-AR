@@ -55,7 +55,7 @@ class _MyHomePageState extends State<MyHomePage> {
       );
     }
     return Text('Success $barcode');
-    return ARObject();
+    // return ARObject();
   }
 
   @override

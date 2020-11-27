@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
-import 'dart:developer';
 import 'plant.dart';
 
 Widget modalBottom(textInfo) {
@@ -9,8 +8,6 @@ Widget modalBottom(textInfo) {
   String family = '';
   String genus = '';
   String desc = '';
-
-  log('data: $text');
 
   List<Plant> plants = [
     Plant(
