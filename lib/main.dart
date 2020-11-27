@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:arcore_flutter_plugin/arcore_flutter_plugin.dart';
 import 'ar_view.dart';
 import 'modal_bottom.dart';
+import 'splash.dart';
 
 void main() {
   runApp(MyApp());
@@ -12,12 +13,11 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'Botani',
-      theme: ThemeData(
-        primarySwatch: Colors.green,
-        visualDensity: VisualDensity.adaptivePlatformDensity,
-      ),
-      home: MyHomePage(title: 'Botani'),
+      title: 'Kenali',
+      home: Splash(),
+      routes: <String, WidgetBuilder>{
+        '/home': (BuildContext context) => MyHomePage(title: 'Kenali'),
+      },
     );
   }
 }
@@ -46,9 +46,13 @@ class _MyHomePageState extends State<MyHomePage> {
         backgroundColor: Color(0xfff3f3f3),
         appBar: AppBar(
           title: Text(widget.title),
+          backgroundColor: Color.fromRGBO(0, 181, 117, 1),
         ),
         body: SizedBox.expand(
             child: Stack(children: <Widget>[
+          // Center(
+          //   child: Text('tes'),
+          // ),
           ArCoreView(onArCoreViewCreated: arView.onArCoreViewCreated),
           modalBottom
         ])));
