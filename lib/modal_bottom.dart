@@ -5,10 +5,10 @@ import 'plant.dart';
 
 Widget modalBottom(textInfo) {
   String text = textInfo != "" ? textInfo : 'Title';
-  String name;
-  String family;
-  String genus;
-  String desc;
+  String name = '';
+  String family = '';
+  String genus = '';
+  String desc = '';
 
   List<Plant> plants = [
     Plant(
