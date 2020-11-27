@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:arcore_flutter_plugin/arcore_flutter_plugin.dart';
-import 'package:flutter_ar/ar_view.dart';
+import 'ar_view.dart';
 import 'modal_bottom.dart';
 
 void main() {
