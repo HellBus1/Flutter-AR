@@ -17,14 +17,14 @@ Widget modalBottom(textInfo) {
         desc:
             'Monstera deliciosa adalah spesies tanaman berbunga yang berasal dari hutan tropis di Meksiko selatan, di selatan Panama. Tanaman ini telah diperkenalkan ke banyak daerah tropis, dan telah menjadi spesies invasif ringan di Hawaii, Seychelles, Pulau Ascension dan Kepulauan Society'),
     Plant(
-        name: 'Monstera deliciosa',
-        family: 'Araceae',
+        name: 'Tes',
+        family: 'Tes1',
         genus: 'Monstera',
         desc:
             'Monstera deliciosa adalah spesies tanaman berbunga yang berasal dari hutan tropis di Meksiko selatan, di selatan Panama. Tanaman ini telah diperkenalkan ke banyak daerah tropis, dan telah menjadi spesies invasif ringan di Hawaii, Seychelles, Pulau Ascension dan Kepulauan Society'),
   ];
 
-  plants.map((plant) {
+  plants.forEach((plant) {
     if (text == plant.name) {
       name = plant.name;
       family = plant.family;
@@ -72,7 +72,7 @@ Widget modalBottom(textInfo) {
                     height: 20,
                   ),
                   Text(
-                    name,
+                    text,
                     style: TextStyle(
                       fontWeight: FontWeight.bold,
                       fontStyle: FontStyle.italic,
