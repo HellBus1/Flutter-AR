@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:arcore_flutter_plugin/arcore_flutter_plugin.dart';
+import 'package:qr_code_scanner/qr_code_scanner.dart';
 import 'ar_view.dart';
 import 'modal_bottom.dart';
 import 'splash.dart';
@@ -32,7 +33,9 @@ class MyHomePage extends StatefulWidget {
 }
 
 class _MyHomePageState extends State<MyHomePage> {
+  final GlobalKey qrKey = GlobalKey();
   ArView arView = ArView();
+  String barcode = "";
 
   @override
   void dispose() {
@@ -50,11 +53,19 @@ class _MyHomePageState extends State<MyHomePage> {
         ),
         body: SizedBox.expand(
             child: Stack(children: <Widget>[
-          // Center(
-          //   child: Text('tes'),
-          // ),
-          ArCoreView(onArCoreViewCreated: arView.onArCoreViewCreated),
-          modalBottom
+          QRView(
+            key: qrKey,
+            onQRViewCreated: (controller) {
+              controller.scannedDataStream.listen((value) {
+                setState(() {
+                  barcode = value;
+                });
+              });
+            },
+          ),
+
+          // ArCoreView(onArCoreViewCreated: arView.onArCoreViewCreated),
+          modalBottom(barcode)
         ])));
   }
 }
