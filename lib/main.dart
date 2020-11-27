@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:arcore_flutter_plugin/arcore_flutter_plugin.dart';
 import 'package:qr_code_scanner/qr_code_scanner.dart';
+import 'ar_object.dart';
 import 'ar_view.dart';
 import 'modal_bottom.dart';
 import 'splash.dart';
@@ -35,7 +36,25 @@ class MyHomePage extends StatefulWidget {
 class _MyHomePageState extends State<MyHomePage> {
   final GlobalKey qrKey = GlobalKey();
   ArView arView = ArView();
+  bool isARActivated = false;
   String barcode = "";
+
+  Widget changeARWidget(bool _isARActivated) {
+    if (!_isARActivated) {
+      return QRView(
+        key: qrKey,
+        onQRViewCreated: (controller) {
+          controller.scannedDataStream.listen((value) {
+            setState(() {
+              barcode = value;
+              isARActivated = true;
+            });
+          });
+        },
+      );
+    }
+    return ARObject();
+  }
 
   @override
   void dispose() {
@@ -53,18 +72,7 @@ class _MyHomePageState extends State<MyHomePage> {
         ),
         body: SizedBox.expand(
             child: Stack(children: <Widget>[
-          QRView(
-            key: qrKey,
-            onQRViewCreated: (controller) {
-              controller.scannedDataStream.listen((value) {
-                setState(() {
-                  barcode = value;
-                });
-              });
-            },
-          ),
-
-          // ArCoreView(onArCoreViewCreated: arView.onArCoreViewCreated),
+          changeARWidget(isARActivated),
           modalBottom(barcode)
         ])));
   }
