@@ -1,9 +1,38 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/foundation.dart';
+import 'plant.dart';
 
 Widget modalBottom(textInfo) {
   String text = textInfo != "" ? textInfo : 'Title';
+  String name;
+  String family;
+  String genus;
+  String desc;
+
+  List<Plant> plants = [
+    Plant(
+        name: 'Monstera deliciosa',
+        family: 'Araceae',
+        genus: 'Monstera',
+        desc:
+            'Monstera deliciosa adalah spesies tanaman berbunga yang berasal dari hutan tropis di Meksiko selatan, di selatan Panama. Tanaman ini telah diperkenalkan ke banyak daerah tropis, dan telah menjadi spesies invasif ringan di Hawaii, Seychelles, Pulau Ascension dan Kepulauan Society'),
+    Plant(
+        name: 'Monstera deliciosa',
+        family: 'Araceae',
+        genus: 'Monstera',
+        desc:
+            'Monstera deliciosa adalah spesies tanaman berbunga yang berasal dari hutan tropis di Meksiko selatan, di selatan Panama. Tanaman ini telah diperkenalkan ke banyak daerah tropis, dan telah menjadi spesies invasif ringan di Hawaii, Seychelles, Pulau Ascension dan Kepulauan Society'),
+  ];
+
+  plants.map((plant) {
+    if (text == plant.name) {
+      name = plant.name;
+      family = plant.family;
+      genus = plant.genus;
+      desc = plant.desc;
+    }
+  });
 
   return SizedBox.expand(
       child: DraggableScrollableSheet(
@@ -44,7 +73,7 @@ Widget modalBottom(textInfo) {
                     height: 20,
                   ),
                   Text(
-                    text,
+                    name,
                     style: TextStyle(
                       fontWeight: FontWeight.bold,
                       fontStyle: FontStyle.italic,
@@ -65,7 +94,7 @@ Widget modalBottom(textInfo) {
                     height: 5,
                   ),
                   Text(
-                    'Araceae',
+                    family,
                     style: TextStyle(fontStyle: FontStyle.italic, fontSize: 18),
                   ),
                   SizedBox(
@@ -82,7 +111,7 @@ Widget modalBottom(textInfo) {
                     height: 5,
                   ),
                   Text(
-                    'Monstera',
+                    genus,
                     style: TextStyle(fontStyle: FontStyle.italic, fontSize: 18),
                   ),
                   SizedBox(
@@ -99,7 +128,7 @@ Widget modalBottom(textInfo) {
                     height: 5,
                   ),
                   Text(
-                    'Monstera deliciosa adalah spesies tanaman berbunga yang berasal dari hutan tropis di Meksiko selatan, di selatan Panama. [2] Ini telah diperkenalkan ke banyak daerah tropis, dan telah menjadi spesies invasif ringan di Hawaii, Seychelles, Pulau Ascension dan Kepulauan Society.',
+                    desc,
                     style: TextStyle(fontSize: 18, letterSpacing: 0.8),
                   ),
                 ],
