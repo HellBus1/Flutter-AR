@@ -1,14 +1,16 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
-import 'package:flutter/foundation.dart';
+import 'dart:developer';
 import 'plant.dart';
 
 Widget modalBottom(textInfo) {
   String text = textInfo != "" ? textInfo : 'Title';
-  String name;
-  String family;
-  String genus;
-  String desc;
+  String name = '';
+  String family = '';
+  String genus = '';
+  String desc = '';
+
+  log('data: $text');
 
   List<Plant> plants = [
     Plant(

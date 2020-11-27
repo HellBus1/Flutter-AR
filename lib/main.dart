@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:arcore_flutter_plugin/arcore_flutter_plugin.dart';
 import 'package:qr_code_scanner/qr_code_scanner.dart';
+import 'package:flutter/foundation.dart';
 import 'ar_object.dart';
 import 'ar_view.dart';
 import 'modal_bottom.dart';
@@ -53,6 +54,7 @@ class _MyHomePageState extends State<MyHomePage> {
         },
       );
     }
+    return Text('Success $barcode');
     return ARObject();
   }
 
